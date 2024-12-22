@@ -1,0 +1,29 @@
+﻿@model WebApplication7.Models.Document
+
+@{
+    ViewBag.Title = "Edit Document";
+}
+
+<h1>Edit Document</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.DocumentID) <!-- Скрытое поле для ID документа -->
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CreatedAt)
+        @Html.TextBoxFor(m => m.CreatedAt, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.CreatedAt)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+}

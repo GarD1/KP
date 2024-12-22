@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebApplication7.Models.Document>
+
+@{
+    ViewBag.Title = "Documents";
+}
+
+<h1>Documents</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var document in Model)
+        {
+            <tr>
+                <td>@document.Title</td>
+                <td>@document.CreatedAt.ToString("g")</td> <!-- Форматирование даты -->
+                <td>
+                    <a href="@Url.Action("Edit", "Documents", new { id = document.DocumentID })">Edit</a>
+                    <a href="@Url.Action("Delete", "Documents", new { id = document.DocumentID })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("Create", "Documents")" class="btn btn-primary">Create New Document</a>
